@@ -17,8 +17,11 @@ public class HudManager {
         HudLayout layout = new HudLayout();
 
         for (HudModule module : MODULES) {
-            module.render(context, client, layout);
-            layout.gap(10);
+            boolean rendered = module.render(context, client, layout);
+
+            if (rendered) {
+                layout.gap(10);
+            }
         }
     }
 }

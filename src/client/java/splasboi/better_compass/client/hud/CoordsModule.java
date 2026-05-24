@@ -9,14 +9,14 @@ public class CoordsModule implements HudModule{
     static final int TEXT_COLOR = 0xFFFFFFFF;
 
     @Override
-    public void render(GuiGraphicsExtractor context, Minecraft client, HudLayout layout) {
+    public boolean render(GuiGraphicsExtractor context, Minecraft client, HudLayout layout) {
         if (client.player == null)
-            return;
+            return false;
 
         boolean hasCompass = client.player.getInventory().contains(Items.COMPASS.getDefaultInstance());
 
         if (!hasCompass)
-            return;
+            return false;
 
         int x = (int)Math.floor(client.player.getX());
         int y = (int)Math.floor(client.player.getY());
@@ -31,5 +31,7 @@ public class CoordsModule implements HudModule{
                 Items.COMPASS.getDefaultInstance(),
                 coordsText
         );
+
+        return true;
     }
 }

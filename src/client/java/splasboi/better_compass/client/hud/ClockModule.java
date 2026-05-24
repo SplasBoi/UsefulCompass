@@ -8,17 +8,17 @@ public class ClockModule implements HudModule {
     boolean use24HourClock = true;
 
     @Override
-    public void render (GuiGraphicsExtractor context, Minecraft client, HudLayout layout) {
+    public boolean render (GuiGraphicsExtractor context, Minecraft client, HudLayout layout) {
         if (client.level == null)
-            return;
+            return false;
 
         if (client.player == null)
-            return;
+            return false;
 
         boolean hasClock = client.player.getInventory().contains(Items.CLOCK.getDefaultInstance());
 
         if (!hasClock)
-            return;
+            return false;
 
         long time = client.level.getDefaultClockTime() % 24000;
 
@@ -46,5 +46,7 @@ public class ClockModule implements HudModule {
                 Items.CLOCK.getDefaultInstance(),
                 timeString
         );
+
+        return true;
     }
 }
