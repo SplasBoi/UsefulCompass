@@ -1,9 +1,8 @@
 # Better Compass
 
-## Setup
+A Minecraft Fabric mod for version 26.1.2 which displays player coordinates and world time on the hud.
+Requires the compass and the clock to be in your inventory respectively.
 
-For setup instructions, please see the [Fabric Documentation page](https://docs.fabricmc.net/develop/getting-started/creating-a-project#setting-up) related to the IDE that you are using.
+*Requires Fabric API to be installed!*
 
-## License
-
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+<img src="media/preview.png">
