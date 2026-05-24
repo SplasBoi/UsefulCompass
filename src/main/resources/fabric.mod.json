@@ -3,9 +3,9 @@
 	"id": "better-compass",
 	"version": "${version}",
 	"name": "Better Compass",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Shows coordinates and world time on the hud when holding onto a compass/clock.",
 	"authors": [
-		"Me!"
+		"SplasBoi"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
@@ -13,7 +13,7 @@
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/better-compass/icon.png",
-	"environment": "*",
+	"environment": "client",
 	"entrypoints": {
 		"main": [
 			"splasboi.better_compass.BetterCompass"
