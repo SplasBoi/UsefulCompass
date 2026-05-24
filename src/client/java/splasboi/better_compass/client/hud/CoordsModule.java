@@ -9,7 +9,7 @@ public class CoordsModule implements HudModule{
     static final int TEXT_COLOR = 0xFFFFFFFF;
 
     @Override
-    public boolean render(GuiGraphicsExtractor context, Minecraft client, HudLayout layout) {
+    public boolean tryRender(GuiGraphicsExtractor context, Minecraft client, HudLayout layout) {
         if (client.player == null)
             return false;
 

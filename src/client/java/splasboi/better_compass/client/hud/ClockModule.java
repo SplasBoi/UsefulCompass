@@ -8,7 +8,7 @@ public class ClockModule implements HudModule {
     boolean use24HourClock = true;
 
     @Override
-    public boolean render (GuiGraphicsExtractor context, Minecraft client, HudLayout layout) {
+    public boolean tryRender (GuiGraphicsExtractor context, Minecraft client, HudLayout layout) {
         if (client.level == null)
             return false;
 
