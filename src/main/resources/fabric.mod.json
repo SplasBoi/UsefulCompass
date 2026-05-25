@@ -10,7 +10,7 @@
 	"contact": {
 		"sources": "https://github.com/SplasBoi/UsefulCompass"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/useful-compass/icon.png",
 	"environment": "client",
 	"entrypoints": {
