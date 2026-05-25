@@ -1,31 +1,30 @@
 {
 	"schemaVersion": 1,
-	"id": "better-compass",
+	"id": "useful-compass",
 	"version": "${version}",
-	"name": "Better Compass",
+	"name": "Useful Compass",
 	"description": "Shows coordinates and world time on the hud when holding onto a compass/clock.",
 	"authors": [
 		"SplasBoi"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/SplasBoi/UsefulCompass"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/better-compass/icon.png",
+	"icon": "assets/useful-compass/icon.png",
 	"environment": "client",
 	"entrypoints": {
 		"main": [
-			"splasboi.better_compass.BetterCompass"
+			"splasboi.useful_compass.UsefulCompass"
 		],
 		"client": [
-			"splasboi.better_compass.client.BetterCompassClient"
+			"splasboi.useful_compass.client.UsefulCompassClient"
 		]
 	},
 	"mixins": [
-		"better-compass.mixins.json",
+		"useful-compass.mixins.json",
 		{
-			"config": "better-compass.client.mixins.json",
+			"config": "useful-compass.client.mixins.json",
 			"environment": "client"
 		}
 	],

@@ -1,4 +1,4 @@
-package splasboi.better_compass.client.mixin;
+package splasboi.useful_compass.client.mixin;
 
 import net.minecraft.client.Minecraft;
 import org.spongepowered.asm.mixin.Mixin;

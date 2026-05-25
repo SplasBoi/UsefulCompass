@@ -1,6 +1,6 @@
 {
 	"required": true,
-	"package": "splasboi.better_compass.client.mixin",
+	"package": "splasboi.useful_compass.client.mixin",
 	"compatibilityLevel": "JAVA_25",
 	"client": [
 		"ExampleClientMixin"

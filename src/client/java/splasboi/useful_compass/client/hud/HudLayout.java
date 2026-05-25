@@ -1,4 +1,4 @@
-package splasboi.better_compass.client.hud;
+package splasboi.useful_compass.client.hud;
 
 public class HudLayout {
     public int x = 10;
