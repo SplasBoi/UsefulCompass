@@ -5,7 +5,8 @@
 	"name": "Useful Compass",
 	"description": "Shows coordinates and world time on the hud when holding onto a compass/clock.",
 	"authors": [
-		"SplasBoi"
+		"SplasBoi",
+		"Icon by Wanyay"
 	],
 	"contact": {
 		"sources": "https://github.com/SplasBoi/UsefulCompass"
