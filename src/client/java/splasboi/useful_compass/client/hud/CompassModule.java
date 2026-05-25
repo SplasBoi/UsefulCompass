@@ -7,8 +7,6 @@ import net.minecraft.client.Minecraft;
 
 
 public class CompassModule implements HudModule{
-    static final int TEXT_COLOR = 0xFFFFFFFF;
-
     @Override
     public boolean tryRender(GuiGraphicsExtractor context, Minecraft client, HudLayout layout) {
         Player player = client.player;

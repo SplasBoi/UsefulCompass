@@ -8,11 +8,13 @@ import splasboi.useful_compass.UsefulCompass;
 import splasboi.useful_compass.client.hud.ClockModule;
 import splasboi.useful_compass.client.hud.CompassModule;
 import splasboi.useful_compass.client.hud.HudManager;
+import splasboi.useful_compass.client.hud.RecoveryCompassModule;
 
 public class UsefulCompassClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		HudManager.register(new CompassModule());
+		HudManager.register(new RecoveryCompassModule());
 		HudManager.register(new ClockModule());
 
 		HudElementRegistry.addLast(
