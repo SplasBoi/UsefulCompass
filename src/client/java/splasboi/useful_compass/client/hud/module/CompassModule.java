@@ -1,10 +1,12 @@
-package splasboi.useful_compass.client.hud;
+package splasboi.useful_compass.client.hud.module;
 
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
 import net.minecraft.client.Minecraft;
 import org.joml.Vector2i;
+import splasboi.useful_compass.client.hud.HudModule;
+import splasboi.useful_compass.client.hud.HudRenderUtil;
 import splasboi.useful_compass.client.util.FormatUtils;
 import splasboi.useful_compass.client.util.PlayerInventoryUtil;
 

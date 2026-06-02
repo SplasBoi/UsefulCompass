@@ -5,10 +5,11 @@ import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.Identifier;
 import splasboi.useful_compass.UsefulCompass;
-import splasboi.useful_compass.client.hud.ClockModule;
-import splasboi.useful_compass.client.hud.CompassModule;
+import splasboi.useful_compass.client.hud.module.ClockModule;
+import splasboi.useful_compass.client.hud.module.CompassModule;
+import splasboi.useful_compass.client.hud.module.RecoveryCompassModule;
 import splasboi.useful_compass.client.hud.HudManager;
-import splasboi.useful_compass.client.hud.RecoveryCompassModule;
+
 
 public class UsefulCompassClient implements ClientModInitializer {
 	@Override
