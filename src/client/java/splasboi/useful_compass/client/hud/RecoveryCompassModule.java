@@ -7,68 +7,62 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import org.joml.Vector2i;
+import splasboi.useful_compass.client.util.FormatUtils;
+import splasboi.useful_compass.client.util.PlayerInventoryUtil;
 
 import java.util.Optional;
 
-public class RecoveryCompassModule implements HudModule {
+public class RecoveryCompassModule extends HudModule {
+    private GlobalPos cachedDeathPos;
+    private String coordsText = "";
+
     @Override
-    public boolean tryRender(GuiGraphicsExtractor context, Minecraft client, HudLayout layout) {
+    public boolean shouldRender(Minecraft client) {
         Player player = client.player;
 
-        if (player == null)
+        if (player == null) {
             return false;
-
-        boolean hasRecoveryCompass = player.getInventory().contains(Items.RECOVERY_COMPASS.getDefaultInstance());
-
-        if (!hasRecoveryCompass)
-            return false;
-
-        Optional<GlobalPos> deathPosOptional = player.getLastDeathLocation();
-
-        if (deathPosOptional.isEmpty())
-            return false;
-
-        GlobalPos deathPos = deathPosOptional.get();
-        ResourceKey<Level> deathDimention = deathPos.dimension();
-
-        boolean playerInDeathDimention = player.level().dimension().equals(deathDimention);
-
-        int x = deathPos.pos().getX();
-        int y = deathPos.pos().getY();
-        int z = deathPos.pos().getZ();
-
-        String coordsText = formatCoords(x, y, z);
-
-        if (!playerInDeathDimention) {
-            coordsText += String.format(" (%s)", getDimensionString(deathDimention));
         }
 
-        HudRenderUtil.drawIconText(
-                context,
-                client,
-                layout,
-                Items.RECOVERY_COMPASS.getDefaultInstance(),
-                coordsText
-        );
+        boolean hasRecoveryCompass = PlayerInventoryUtil.hasItem(player, Items.RECOVERY_COMPASS);
+        Optional<GlobalPos> deathPosOptional = player.getLastDeathLocation();
 
+        if (!hasRecoveryCompass || deathPosOptional.isEmpty()) {
+            return false;
+        }
+
+        cachedDeathPos = deathPosOptional.get();
         return true;
     }
 
-    private String formatCoords(int x, int y, int z) {
-        return String.format("X: %d Y: %d Z: %d", x, y, z);
-    }
+    @Override
+    public void render(GuiGraphicsExtractor ctx, Minecraft client, Vector2i pos) {
+        if (client != null && client.player != null && cachedDeathPos != null) {
+            Player player = client.player;
 
-    private String getDimensionString(ResourceKey<Level> levelKey) {
-        String levelId = levelKey.identifier().toString();
-        if (levelId.startsWith("minecraft:")) {
-            levelId = levelId.substring("minecraft:".length());
+            boolean hasRecoveryCompass = PlayerInventoryUtil.hasItem(player, Items.RECOVERY_COMPASS);
+
+            ResourceKey<Level> deathDimension = cachedDeathPos.dimension();
+            boolean playerInDeathDimension = player.level().dimension().equals(deathDimension);
+
+            int x = cachedDeathPos.pos().getX();
+            int y = cachedDeathPos.pos().getY();
+            int z = cachedDeathPos.pos().getZ();
+
+            coordsText = FormatUtils.coords(x, y, z);
+
+            if (!playerInDeathDimension) {
+                coordsText += " (" + FormatUtils.dimension(deathDimension) + ")";
+            }
         }
 
-        return switch (levelId) {
-            case "overworld" -> "Overworld";
-            case "the_nether" -> "Nether";
-            case "the_end" -> "End";
-            default -> levelId;
-        };
+        HudRenderUtil.drawIconText(
+                ctx,
+                client,
+                pos,
+                Items.RECOVERY_COMPASS.getDefaultInstance(),
+                coordsText
+        );
     }
 }

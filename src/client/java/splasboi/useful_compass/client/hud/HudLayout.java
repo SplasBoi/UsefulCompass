@@ -1,16 +1,13 @@
 package splasboi.useful_compass.client.hud;
 
-public class HudLayout {
-    public int x = 10;
-    public int y = 10;
+import org.joml.Vector2i;
 
-    public final int lineHeight = 9;
+public class HudLayout {
+    public Vector2i pos = new Vector2i(10, 10);
+
+    public final int lineHeight = 20;
 
     public void nextLine() {
-        y += lineHeight;
-    }
-
-    public void gap(int pixels) {
-        y += pixels;
+        pos.y += lineHeight;
     }
 }

@@ -15,12 +15,27 @@ public class HudManager {
 
     public static void renderAll(GuiGraphicsExtractor context, Minecraft client) {
         HudLayout layout = new HudLayout();
+        final boolean gamePaused = client.isPaused();
 
         for (HudModule module : MODULES) {
-            boolean rendered = module.tryRender(context, client, layout);
+            boolean visible = module.shouldRender(client);
 
-            if (rendered) {
-                layout.gap(10);
+            if (!gamePaused) {
+                module.updateVisibility(visible);
+
+                module.setLayoutTarget(layout.pos.x, layout.pos.y);
+
+                module.updateAnimation(client);
+            }
+
+            if (!module.isAnimatingOrVisible()) {
+                continue;
+            }
+
+            module.render(context, client, module.getRenderPos());
+
+            if (module.isVisible()) {
+                layout.nextLine();
             }
         }
     }

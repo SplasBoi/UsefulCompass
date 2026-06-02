@@ -3,50 +3,48 @@ package splasboi.useful_compass.client.hud;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.world.item.Items;
+import org.joml.Vector2i;
+import splasboi.useful_compass.client.util.FormatUtils;
+import splasboi.useful_compass.client.util.PlayerInventoryUtil;
 
-public class ClockModule implements HudModule {
-    boolean use24HourClock = true;
+public class ClockModule extends HudModule {
+    static final boolean use24HourClock = true;
+    private String timeString = "";
 
     @Override
-    public boolean tryRender (GuiGraphicsExtractor context, Minecraft client, HudLayout layout) {
-        if (client.level == null)
+    public boolean shouldRender(Minecraft client) {
+        if (client == null) {
             return false;
+        }
 
-        if (client.player == null)
+        if (client.level == null) {
             return false;
+        }
 
-        boolean hasClock = client.player.getInventory().contains(Items.CLOCK.getDefaultInstance());
-
-        if (!hasClock)
+        if (client.player == null) {
             return false;
+        }
 
-        long time = client.level.getDefaultClockTime() % 24000;
+        return PlayerInventoryUtil.hasItem(client.player, Items.CLOCK);
+    }
 
-        int hours = (int)((time / 1000 + 6) % 24);
-        int minutes = (int)((time % 1000) * 60 / 1000);
+    @Override
+    public void render(GuiGraphicsExtractor ctx, Minecraft client, Vector2i pos) {
+        if (client != null && client.level != null) {
+            long time = client.level.getDefaultClockTime() % 24000;
 
-        String timeString;
+            int hour = (int)((time / 1000 + 6) % 24);
+            int minute = (int)((time % 1000) * 60 / 1000);
 
-        if (use24HourClock) {
-            timeString = String.format("%02d:%02d", hours, minutes);
-        } else {
-            String period = hours >= 12 ? "PM" : "AM";
-            int hour12 = hours % 12;
-            if (hour12 == 0)
-                hour12 = 12;
-
-            timeString = String.format("%02d:%02d %s", hour12, minutes, period
-            );
+            timeString = FormatUtils.time(hour, minute, use24HourClock);
         }
 
         HudRenderUtil.drawIconText(
-                context,
+                ctx,
                 client,
-                layout,
+                pos,
                 Items.CLOCK.getDefaultInstance(),
                 timeString
         );
-
-        return true;
     }
 }
