@@ -22,13 +22,7 @@
 			"splasboi.useful_compass.client.UsefulCompassClient"
 		]
 	},
-	"mixins": [
-		"useful-compass.mixins.json",
-		{
-			"config": "useful-compass.client.mixins.json",
-			"environment": "client"
-		}
-	],
+	"mixins": [],
 	"depends": {
 		"fabricloader": ">=0.19.2",
 		"minecraft": "~26.1.2",
