@@ -3,7 +3,7 @@
 	"id": "useful-compass",
 	"version": "${version}",
 	"name": "Useful Compass",
-	"description": "Shows coordinates and world time on the hud when holding onto a compass/clock.",
+	"description": "Displays info from items like the compass and the clock onto the HUD. Requires the item to be in the players inventory.",
 	"authors": [
 		"SplasBoi",
 		"Icon by Wanyay"
