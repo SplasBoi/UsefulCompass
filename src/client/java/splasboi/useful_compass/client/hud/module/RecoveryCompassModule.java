@@ -9,7 +9,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import org.joml.Vector2i;
 import splasboi.useful_compass.client.hud.HudModule;
-import splasboi.useful_compass.client.hud.HudRenderUtil;
+import splasboi.useful_compass.client.util.HudRenderUtil;
 import splasboi.useful_compass.client.util.FormatUtils;
 import splasboi.useful_compass.client.util.PlayerInventoryUtil;
 

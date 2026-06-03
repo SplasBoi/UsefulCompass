@@ -2,6 +2,7 @@ package splasboi.useful_compass.client.hud;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
+import splasboi.useful_compass.UsefulCompass;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +23,7 @@ public class HudManager {
 
             if (!gamePaused) {
                 module.updateVisibility(visible);
-
                 module.setLayoutTarget(layout.pos.x, layout.pos.y);
-
                 module.updateAnimation(client);
             }
 
