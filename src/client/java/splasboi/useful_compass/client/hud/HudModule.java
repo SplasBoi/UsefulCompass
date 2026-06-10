@@ -10,7 +10,9 @@ public abstract class HudModule {
     protected final Vector2f targetPos = new Vector2f();
 
     protected float entryProgress = 0.0F;
+
     protected boolean targetVisible = false;
+    protected boolean wasVisible = false;
 
     protected final float EXIT_OFFSET = -40.0F;
 
@@ -22,10 +24,20 @@ public abstract class HudModule {
         return 1.0F - (float)Math.pow(1.0F - x, 3.0F);
     }
 
-    public Vector2i getRenderPos() {
-        float ease = easeOutCubic(entryProgress);
+    public float easeInCubic(float x) {
+        return x * x * x;
+    }
 
-        float offsetX = EXIT_OFFSET * (1.0F - ease);
+    public Vector2i getRenderPos() {
+        float progress;
+
+        if (targetVisible) {
+            progress = easeOutCubic(entryProgress);
+        } else {
+            progress = easeInCubic(entryProgress);
+        }
+
+        float offsetX = EXIT_OFFSET * (1.0F - progress);
 
         return new Vector2i(
                 Math.round(renderPos.x + offsetX),
@@ -49,7 +61,12 @@ public abstract class HudModule {
     }
 
     public void updateVisibility(boolean visible) {
+        if (!wasVisible && visible) {
+            renderPos.set(targetPos);
+        }
+
         targetVisible = visible;
+        wasVisible = visible;
     }
 
     public boolean isAnimatingOrVisible() {

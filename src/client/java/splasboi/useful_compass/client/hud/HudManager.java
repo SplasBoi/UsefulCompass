@@ -22,8 +22,8 @@ public class HudManager {
             boolean visible = module.shouldRender(client);
 
             if (!gamePaused) {
-                module.updateVisibility(visible);
                 module.setLayoutTarget(layout.pos.x, layout.pos.y);
+                module.updateVisibility(visible);
                 module.updateAnimation(client);
             }
 
